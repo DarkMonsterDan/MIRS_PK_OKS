@@ -32,7 +32,7 @@ namespace MIRSPKOKS
         [AllureTag("NUnit", "Debug")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureFeature("Core")]
-
+        //тест git
         public void Test_1()
         {
             
