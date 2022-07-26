@@ -28,7 +28,9 @@ namespace MIRSPKOKS.BaseClass
             options.AddExtension(@"..\..\..\Resources\1.2.8_0.crx");
             driver = new ChromeDriver(options);        
             driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             driver.Url = "http://stk-lk.permkrai.ru/loginback/";
+
         }
 
         [TearDown]
