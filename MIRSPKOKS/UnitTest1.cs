@@ -13,6 +13,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using Allure.Commons;
 
+
 namespace MIRSPKOKS 
 {
 
@@ -32,8 +33,7 @@ namespace MIRSPKOKS
         [AllureTag("NUnit", "Debug")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureFeature("Core")]
-        //тест git
-        public void Test_1()
+        public void signatureAktViezdnogo()
         {
             
             Authorization Authorization = new Authorization(); // чтобы могли обращаться к объектам из PageHome.cs                                                  
@@ -41,17 +41,16 @@ namespace MIRSPKOKS
             MainPage MainPage = new MainPage();            
             PageFactory.InitElements(driver, MainPage); 
 
-            Authorization.Login.SendKeys("IGSN4"); // вводим поисковую фразу
-            if (!Authorization.Login.Displayed)
-            throw new Exception("Поле Логин отсутствует на форме");
-             Log.Info("Поле Логин заполнилось");
-            Authorization.Password.SendKeys("IGSN4"); // вводим поисковую фразу
-            Authorization.Input.Click();
+            Authorization.Login.SendKeys("IGSN4");
+          //  if (!Authorization.Login.Displayed)
+          //  throw new Exception("Поле Логин отсутствует на форме");
+         //    Log.Info("Поле Логин заполнилось");
+            Authorization.Password.SendKeys("IGSN4"); 
+        
 
-                    AllureLifecycle.Instance.WrapInStep(
-            () => { Assert.IsTrue(true); },
-            "Validate calculations");
-       
+            Assert.IsTrue(false, "Сломал намеренно");
+      
+
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
            // Thread.Sleep(5000);
             driver.SwitchTo().Frame(MainPage.Iframe_test);
@@ -92,12 +91,38 @@ namespace MIRSPKOKS
             var check = MainPage.Text_podpis.Text;
             if (check.Contains("Подписано"))// проверяем успешно ли
             {
+                Assert.Fail("Возникла ошибка при подписании");
             }
             else
             {
                 Assert.Fail("Возникла ошибка при подписании");
                 driver.Quit();
             }
+
+        }
+        [Test]
+        [AllureTag("NUnit", "Debug")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureFeature("Core")]
+        public void test2()
+        {
+
+            Authorization Authorization = new Authorization(); // чтобы могли обращаться к объектам из PageHome.cs                                                  
+            PageFactory.InitElements(driver, Authorization); // инициализация элементов Page Object из PageHome.cs
+            MainPage MainPage = new MainPage();
+            PageFactory.InitElements(driver, MainPage);
+
+            Authorization.Login.SendKeys("IGSN4");
+            if (!Authorization.Login.Displayed)
+                throw new Exception("Поле Логин отсутствует на форме");
+            Log.Info("Поле Логин заполнилось");
+            Authorization.Password.SendKeys("IGSN4");
+          // AllureLifecycle.Instance.WrapInStep(() =>
+            
+            Assert.IsTrue(Authorization.Input.Displayed, "успешно");
+
+
+            
 
         }
     }
