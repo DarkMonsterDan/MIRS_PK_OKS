@@ -57,5 +57,23 @@ namespace MIRSPKOKS.PagesQA
         [FindsBy(How = How.XPath, Using = "//td[contains(., 'Подписано')]")]
         public IWebElement Text_podpis { get; set; }
 
+
+
+        [FindsBy(How = How.Id, Using = "button-1066-btnEl")]
+        public IWebElement Creat_button_akt { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//label[contains(., 'Акт выездного обследования')]")]
+        public IWebElement RadioButton_AktViezdnogo { get; set; }
+
+        //  [FindsBy(How = How.XPath, Using = "//input[@id='srcext-gen4841-inputEl']")]
+        [FindsBy(How = How.Name, Using = "attr_82020_")]
+        public IWebElement Nomer { get; set; }
+        
+        [FindsBy(How = How.Name, Using = "attr_82021_")]
+        public IWebElement Date { get; set; }
+
+
+        
+
     }
 }

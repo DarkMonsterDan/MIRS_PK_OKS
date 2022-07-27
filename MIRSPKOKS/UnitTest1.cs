@@ -13,6 +13,8 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using Allure.Commons;
 
+using OpenQA.Selenium.Support.UI;
+
 namespace MIRSPKOKS 
 {
 
@@ -21,6 +23,15 @@ namespace MIRSPKOKS
     [AllureNUnit]
     public class Tests : BaseTest
     {
+        //public static void Wait(int miliseconds, int maxTimeOutSeconds = 60)
+        //{
+        //    var wait = new WebDriverWait(driver, timeout: new TimeSpan(0, 0, 1, maxTimeOutSeconds));
+        //    var delay = new TimeSpan(0, 0, 0, 0, miliseconds);
+        //    var timestamp = DateTime.Now;
+        //    wait.Until(webDriver => (DateTime.Now - timestamp) > delay);
+        //}
+
+
         [OneTimeSetUp]
         public void ClearResultsDir()
         {
@@ -29,9 +40,9 @@ namespace MIRSPKOKS
 
     
         [Test]
-        [AllureTag("NUnit", "Debug")]
+        [AllureDescription("Подписание")]
         [AllureSeverity(SeverityLevel.critical)]
-        [AllureFeature("Core")]
+  
         
         public void SignatureAktViezdnogo()
         {
@@ -39,10 +50,15 @@ namespace MIRSPKOKS
             Authorization Authorization = new Authorization(); // чтобы могли обращаться к объектам из PageHome.cs                                                  
             PageFactory.InitElements(driver, Authorization); // инициализация элементов Page Object из PageHome.cs
             MainPage MainPage = new MainPage();            
-            PageFactory.InitElements(driver, MainPage);    
-            Authorization.Login.SendKeys("IGSN4");
-            Authorization.Password.SendKeys("IGSN4"); 
-            Authorization.Input.Click();                
+            PageFactory.InitElements(driver, MainPage);
+
+            AllureLifecycle.Instance.WrapInStep(() =>
+            {
+                Authorization.Login.SendKeys("IGSN4");
+                Authorization.Password.SendKeys("IGSN4");
+                Authorization.Input.Click();
+            }, "Авторизация");
+
             driver.SwitchTo().Frame(MainPage.Iframe_test);
             MainPage.Nadzor.Click();   
             driver.SwitchTo().Frame(MainPage.Iframe_test2);
@@ -60,12 +76,70 @@ namespace MIRSPKOKS
             MainPage.Radio_button_Avtomat.Click();      
             MainPage.Ok_button.Click();     
             MainPage.Sertif_petrov.Click();
-            MainPage.Vibrat_button.Click();
-            
+            MainPage.Vibrat_button.Click();       
             var check = MainPage.Text_podpis.Text;
             if (check.Contains("Подписано"))// проверяем успешно ли
             {
+              
+            }
+            else
+            {
                 Assert.Fail("Возникла ошибка при подписании");
+                driver.Quit();
+            }
+
+        }
+
+        [Test]
+        [AllureDescription("Создание")]
+        [AllureSeverity(SeverityLevel.critical)]
+
+        public void CreateAktViezdnogo()
+        {
+
+            Authorization Authorization = new Authorization(); // чтобы могли обращаться к объектам из PageHome.cs                                                  
+            PageFactory.InitElements(driver, Authorization); // инициализация элементов Page Object из PageHome.cs
+            MainPage MainPage = new MainPage();
+            PageFactory.InitElements(driver, MainPage);
+
+            AllureLifecycle.Instance.WrapInStep(() =>
+            {
+                Authorization.Login.SendKeys("IGSN4");
+                Authorization.Password.SendKeys("IGSN4");
+                Authorization.Input.Click();
+            }, "Авторизация");
+
+            driver.SwitchTo().Frame(MainPage.Iframe_test);
+            MainPage.Nadzor.Click();
+            driver.SwitchTo().Frame(MainPage.Iframe_test2);
+            driver.SwitchTo().Frame(MainPage.Iframe_test3);
+            MainPage.Test_line_object.Click();
+            MainPage.Edit_button_object.Click();
+            Thread.Sleep(6000);
+            MainPage.Akt_Proverki.Click();
+            driver.SwitchTo().Frame(MainPage.Iframe_test4);
+            MainPage.Akt_Viezdnogo.Click();
+
+            MainPage.Creat_button_akt.Click();
+           
+            MainPage.RadioButton_AktViezdnogo.Click();
+            Thread.Sleep(12000);
+            MainPage.Nomer.SendKeys("test");
+            MainPage.Date.SendKeys("27.07.2022");
+
+
+            MainPage.Edit_button_akt.Click();
+            Thread.Sleep(20000);
+            MainPage.Zhurnal.Click();
+            MainPage.Podpis.Click();
+            MainPage.Radio_button_Avtomat.Click();
+            MainPage.Ok_button.Click();
+            MainPage.Sertif_petrov.Click();
+            MainPage.Vibrat_button.Click();
+            var check = MainPage.Text_podpis.Text;
+            if (check.Contains("Подписано"))// проверяем успешно ли
+            {
+
             }
             else
             {
