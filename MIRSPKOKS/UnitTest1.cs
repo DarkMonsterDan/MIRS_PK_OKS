@@ -40,7 +40,9 @@ namespace MIRSPKOKS
 
     
         [Test]
-        [AllureDescription("Подписание")]
+        [Category("Акт_выездного_обследования")]
+        [Description("02_Подписание_Акт_выездного_обследования")]
+        [AllureDescription("02_Подписание_Акт_выездного_обследования")]
         [AllureSeverity(SeverityLevel.critical)]
   
         
@@ -91,7 +93,10 @@ namespace MIRSPKOKS
         }
 
         [Test]
-        [AllureDescription("Создание")]
+        [Category("Акт_выездного_обследования")]
+        [Description("01_Создание_Акт_выездного_обследования")]
+        [AllureDescription("01_Создание_Акт_выездного_обследования")]
+
         [AllureSeverity(SeverityLevel.critical)]
 
         public void CreateAktViezdnogo()
