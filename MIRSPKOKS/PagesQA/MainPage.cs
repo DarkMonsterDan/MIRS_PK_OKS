@@ -26,7 +26,7 @@ namespace MIRSPKOKS.PagesQA
 
         [FindsBy(How = How.XPath, Using = "//tr[contains(., 'Акты проверок')]")]
         public IWebElement Akt_Proverki { get; set; }
-
+        
         [FindsBy(How = How.XPath, Using = "//iframe[@src = 'grid.php?id=81617&id_obj=81617&id_master=99759186&id_slave=0&id_field=15919&obj_card=1&ids=15919&list=1&popup=1&popupTp=6&outref=1&id_ref=86332&id_ref_type=23&if_hist=undefined&id_combo=undefined&if_mongo=undefined&grey_style=1&if_tab=1']")]
         public IWebElement Iframe_test4 { get; set; }
 
@@ -66,14 +66,50 @@ namespace MIRSPKOKS.PagesQA
         public IWebElement RadioButton_AktViezdnogo { get; set; }
 
         //  [FindsBy(How = How.XPath, Using = "//input[@id='srcext-gen4841-inputEl']")]
+
+      //  [FindsBy(How = How.XPath, Using = "//*[@class='x-boundlist-list-ct']/ul/li[1]")]
+      
+
         [FindsBy(How = How.Name, Using = "attr_82020_")]
         public IWebElement Nomer { get; set; }
-        
+
         [FindsBy(How = How.Name, Using = "attr_82021_")]
         public IWebElement Date { get; set; }
 
+        [FindsBy(How = How.XPath, Using = ".//span[@id='view_attr_99758969_']/table/tbody/tr/td[2]/table/tbody/tr/td[3]/div")]
+        public IWebElement Mnoyu { get; set; }
 
+        [FindsBy(How = How.XPath, Using = ".//div[@class='x-boundlist x-boundlist-floating x-layer x-boundlist-default'][1]/div[@class='x-boundlist-list-ct']/ul/li[1]")]
+        public IWebElement Mnoyu_spisok { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//span[@id='view_attr_87507_']/table/tbody/tr/td[2]/table/tbody/tr/td[3]/div")]
+        public IWebElement Na_osnovanii { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//div[@class='x-boundlist x-boundlist-floating x-layer x-boundlist-default'][2]/div[@class='x-boundlist-list-ct']/ul/li[1]")]
+        public IWebElement Na_osnovanii_spisok { get; set; }
+
+        [FindsBy(How = How.Name, Using = "attr_87516_")]
+        public IWebElement Date_provedeniya { get; set; }
+
+        [FindsBy(How = How.Name, Using = "attr_99759278_")]
+        public IWebElement Po_resultatam_ustanovleno { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//span[@id='view_attr_99759083_']/table/tbody/tr/td[2]/table/tbody/tr/td[3]/div")]
+        public IWebElement Podpisivayushiy { get; set; }
         
+        [FindsBy(How = How.XPath, Using = ".//div[@class='x-boundlist x-boundlist-floating x-layer x-boundlist-default'][3]/div[@class='x-boundlist-list-ct']/ul/li[1]")]
+        public IWebElement Podpisivayushiy_spisok { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(., 'Сохранить')]")]
+        public IWebElement Save_document { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(., 'Акт выездного обследования')]")]
+        public IWebElement Akt_viezdnogo_obsledovaniya_vkladka { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(., 'Перенести действия из задания')]")]
+        public IWebElement Perenesti_deistvie_iz_zadaniya { get; set; }
+
+
 
     }
 }

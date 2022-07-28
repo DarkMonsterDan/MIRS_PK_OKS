@@ -97,8 +97,8 @@ namespace MIRSPKOKS
         public void CreateAktViezdnogo()
         {
 
-            Authorization Authorization = new Authorization(); // чтобы могли обращаться к объектам из PageHome.cs                                                  
-            PageFactory.InitElements(driver, Authorization); // инициализация элементов Page Object из PageHome.cs
+            Authorization Authorization = new Authorization();                                                  
+            PageFactory.InitElements(driver, Authorization); 
             MainPage MainPage = new MainPage();
             PageFactory.InitElements(driver, MainPage);
 
@@ -119,33 +119,25 @@ namespace MIRSPKOKS
             MainPage.Akt_Proverki.Click();
             driver.SwitchTo().Frame(MainPage.Iframe_test4);
             MainPage.Akt_Viezdnogo.Click();
-
-            MainPage.Creat_button_akt.Click();
-           
+            MainPage.Creat_button_akt.Click();       
             MainPage.RadioButton_AktViezdnogo.Click();
             Thread.Sleep(12000);
-            MainPage.Nomer.SendKeys("test");
+            MainPage.Nomer.SendKeys("Auto_test");
             MainPage.Date.SendKeys("27.07.2022");
-
-
-            MainPage.Edit_button_akt.Click();
-            Thread.Sleep(20000);
+            MainPage.Mnoyu.Click();            
+            MainPage.Mnoyu_spisok.Click();
+            MainPage.Na_osnovanii.Click();
+            MainPage.Na_osnovanii_spisok.Click();
+            MainPage.Date_provedeniya.SendKeys("27.07.2022");
+            MainPage.Po_resultatam_ustanovleno.SendKeys("test");
             MainPage.Zhurnal.Click();
-            MainPage.Podpis.Click();
-            MainPage.Radio_button_Avtomat.Click();
-            MainPage.Ok_button.Click();
-            MainPage.Sertif_petrov.Click();
-            MainPage.Vibrat_button.Click();
-            var check = MainPage.Text_podpis.Text;
-            if (check.Contains("Подписано"))// проверяем успешно ли
-            {
-
-            }
-            else
-            {
-                Assert.Fail("Возникла ошибка при подписании");
-                driver.Quit();
-            }
+            MainPage.Podpisivayushiy.Click();
+            MainPage.Podpisivayushiy_spisok.Click(); 
+            MainPage.Akt_viezdnogo_obsledovaniya_vkladka.Click();
+            MainPage.Save_document.Click();
+          //  Thread.Sleep(15000);
+            MainPage.Perenesti_deistvie_iz_zadaniya.Click();
+          
 
         }
 
