@@ -146,6 +146,45 @@ namespace MIRSPKOKS
 
         }
 
+        //Удаление неактуально, т.к. в статусе Подписано не удаляется
+       // [Test]
+        [Category("Акт_выездного_обследования")]
+        [Description("03_Удаление_Акт_выездного_обследования")]
+        [AllureDescription("03_Удаление_Акт_выездного_обследования")]
+
+        [AllureSeverity(SeverityLevel.critical)]
+
+        public void DeleteAktViezdnogo()
+        {
+
+            Authorization Authorization = new Authorization();
+            PageFactory.InitElements(driver, Authorization);
+            MainPage MainPage = new MainPage();
+            PageFactory.InitElements(driver, MainPage);
+
+            AllureLifecycle.Instance.WrapInStep(() =>
+            {
+                Authorization.Login.SendKeys("IGSN4");
+                Authorization.Password.SendKeys("IGSN4");
+                Authorization.Input.Click();
+            }, "Авторизация");
+
+            driver.SwitchTo().Frame(MainPage.Iframe_test);
+            MainPage.Nadzor.Click();
+            driver.SwitchTo().Frame(MainPage.Iframe_test2);
+            driver.SwitchTo().Frame(MainPage.Iframe_test3);
+            MainPage.Test_line_object.Click();
+            MainPage.Edit_button_object.Click();
+            Thread.Sleep(6000);
+            MainPage.Akt_Proverki.Click();
+            driver.SwitchTo().Frame(MainPage.Iframe_test4);
+            MainPage.Akt_Viezdnogo_delete.Click();
+            MainPage.Delete_button_object.Click();
+            Thread.Sleep(50000);
+            MainPage.Delete_OK.Click();
+
+        }
+
         [Test]
         [AllureTag("NUnit", "Debug")]
         [AllureSeverity(SeverityLevel.critical)]

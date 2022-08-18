@@ -48,7 +48,7 @@ namespace MIRSPKOKS.PagesQA
         [FindsBy(How = How.XPath, Using = "//button[contains(., 'Ок')]")]
         public IWebElement Ok_button { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//tr[contains(., ' Петров Евгений Леонидович')]")]
+        [FindsBy(How = How.XPath, Using = "//tr[contains(., ' Иванов Иван Иванович')]")]
         public IWebElement Sertif_petrov { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[contains(., 'Выбрать')]")]
@@ -110,6 +110,15 @@ namespace MIRSPKOKS.PagesQA
         public IWebElement Perenesti_deistvie_iz_zadaniya { get; set; }
 
 
+        [FindsBy(How = How.XPath, Using = "//tr[contains(., 'Акт выездного обследования') and contains(., 'Подписан') and contains(., 'Auto_test')]")]
+        public IWebElement Akt_Viezdnogo_delete { get; set; }
 
+        [FindsBy(How = How.Id, Using = "button-1068-btnWrap")]
+        public IWebElement Delete_button_object { get; set; }
+
+        [FindsBy(How = How.Id, Using = "button-1005-btnWrap")]
+        public IWebElement Delete_OK { get; set; }
+
+       
     }
 }
